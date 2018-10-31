@@ -1,7 +1,6 @@
 jmp main 
 ;Henrique F. M. Freitas - 8937225
-;Jayro Boy V. Neto - 9762880
-;Vinicius Finke R. José - 9791052
+
 
 ;tela de introdução inicial.
 	intro1: string "                                        "
@@ -260,6 +259,38 @@ jmp main
 	win28: string "                                        "
 	win29: string "                                        "
 	win30: string "                                        "
+	
+;tela de losing
+	lose01: string "                                        "
+	lose02: string "                                        "
+	lose03: string "                                        "
+	lose04: string "  ___  ___  _  _    _ _  ___  ___       "
+	lose05: string " |  _|| _ || || |  | | || _ \|  _|      "
+	lose06: string " |  _||   || || |_ | | ||   /|  _|      "
+	lose07: string " |_|  |_|_||_||___||___||_|_\|___|      "
+	lose08: string "                                        "
+	lose09: string "                                        "
+	lose10: string "                                        "
+	lose11: string "      You suck!                         "
+	lose12: string "      It would appear you've            "
+	lose13: string "      thrown your chances               "
+	lose14: string "      to the wind.                      "
+	lose15: string "                                        "
+	lose16: string "      Lord Vader is very                "
+	lose17: string "      displeased with you.              "
+	lose18: string "                                        "
+	lose19: string "      He looks like he wants            "
+	lose20: string "      to have a little chat             "
+	lose21: string "                                        "
+	lose22: string "                                        "
+	lose23: string "                                        "
+	lose24: string "                                        "
+	lose25: string "                                        "
+	lose26: string "                                        "
+	lose27: string "                                        "
+	lose28: string "                                        "
+	lose29: string "                                        "
+	lose30: string "                                        "
 
 ;possíveis movimentos do alien
 rand : var #30
@@ -467,7 +498,8 @@ main:
 		cmp r5, r4
 		ceq desenhaAlien
 		call desenhaTiro
-		call testaFim
+		call testaFimTiro
+		call testaFimColisao
 		inc r0
 		jmp mainLoop
 	mainSai:
@@ -482,14 +514,33 @@ main:
 		pop r1
 		pop r0
 		halt
-
-testaFim:
+	mainSaiLoss:
+		loadn r1, #lose01
+		call desenhaTelaAmarelo
+		pop r7
+		pop r6
+		pop r5
+		pop r4
+		pop r3
+		pop r2
+		pop r1
+		pop r0
+		halt
+				
+testaFimTiro:
 	load r6, PosAlien
 	load r7, PosTiro
 	cmp r6, r7
 	jeq mainSai
 	rts
-
+	
+testaFimColisao:
+	load r6, PosAlien
+	load r7, PosNave
+	cmp r6, r7
+	jeq mainSaiLoss
+	rts
+ 
 
 ;*********arrumaTela*********
 ;@description: arruma conflitos de cor na paleta
