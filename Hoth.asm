@@ -1,6 +1,7 @@
 jmp main 
 ;Henrique F. M. Freitas - 8937225
-
+;Jayro Boy V. Neto - 9762880
+;Vinicius Finke R. José - 9791052
 
 ;tela de introdução inicial.
 	intro1: string "                                        "
