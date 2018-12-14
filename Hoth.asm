@@ -1,6 +1,7 @@
 jmp main 
 ;Henrique F. M. Freitas - 8937225
-
+;Jayro Boy - 9762880
+;Vinícius Finke  - 9791052
 
 ;tela de introdução inicial.
 	intro1: string "                                        "
@@ -265,9 +266,9 @@ jmp main
 	lose02: string "                                        "
 	lose03: string "                                        "
 	lose04: string "  ___  ___  _  _    _ _  ___  ___       "
-	lose05: string " |  _|| _ || || |  | | || _ \|  _|      "
+	lose05: string " |  _|| _ || || |  | | || _ \\|  _|      "
 	lose06: string " |  _||   || || |_ | | ||   /|  _|      "
-	lose07: string " |_|  |_|_||_||___||___||_|_\|___|      "
+	lose07: string " |_|  |_|_||_||___||___||_|_\\|___|      "
 	lose08: string "                                        "
 	lose09: string "                                        "
 	lose10: string "                                        "
@@ -536,6 +537,9 @@ testaFimTiro:
 	
 testaFimColisao:
 	load r6, PosAlien
+	load r7, PosNaveAnterior
+	cmp r6, r7
+	jeq mainSaiLoss
 	load r7, PosNave
 	cmp r6, r7
 	jeq mainSaiLoss
